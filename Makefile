@@ -1,13 +1,19 @@
 CXX = g++
 CXXFLAGS = -Wall -O2
 
-all: main
+all: euclids nminusone
 
-main: helloworld.cpp
-	$(CXX) $(CXXFLAGS) helloworld.cpp -o main 
+euclids: euclids.cpp
+	$(CXX) $(CXXFLAGS) euclids.cpp -o euclids 
+
+nminusone: nminusone.cpp
+	$(CXX) $(CXXFLAGS) nminusone.cpp -o nminusone 
 
 clean:
-	rm -f main 
+	rm -f euclids nminusone 
 
-run:
-	./main
+run-euc:
+	./euclids
+
+run-nmin:
+	./nminusone
