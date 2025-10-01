@@ -3,9 +3,9 @@ this repository is simply to hold all of my code for easy transport between VM a
 
 ## Contact
 
-Author: Maxwell Castle
-Numbers: 443-789-7819
-Email: Maxwell.j.castle@gmail.com
+- Author: Maxwell Castle
+- Numbers: 443-789-7819
+- Email: Maxwell.j.castle@gmail.com
 
 ### Content
 
