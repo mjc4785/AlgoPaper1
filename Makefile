@@ -15,6 +15,9 @@ primefactor: primefactor.cpp
 clean:
 	rm -f euclids nminusone primefactor
 
+val:
+	valgrind --leak-check=full ./primefactor
+
 run-euc:
 	./euclids
 

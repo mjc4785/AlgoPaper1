@@ -2,6 +2,7 @@
 #include<iostream>
 #include<cmath>
 #include <chrono>  
+#include<vector>
 using namespace std;
 using namespace std::chrono;
 
@@ -11,32 +12,41 @@ using namespace std::chrono;
  * remainder, it'll recursively call this fucntion with the nunmber / the divisor. 
  * I think this algorithm is quite pretty and is much more compact than euclid's for example
  */
-void primefact(long long num, long long div){
+void primefact(long long num, long long div, vector<long long>& factors){
 	if (num == div){ 
-		printf("%lld", div); 
+		factors.push_back(div);
 		return;
 	}
 
 	if(num % div == 0){
-		printf("%lld ", div);
-		primefact((num/div), div);
+		factors.push_back(div);
+		primefact((num/div), div, factors);
 		return;
 	}
 	else{
-		primefact(num, (div+1));
+		primefact(num, (div+1), factors);
 		return;
 	}
 } 
 
+void printvec(vector<long long> m){
+	int len = m.size();
+	for(int i = 0; i<len; i++){
+		printf("%lld ", m[i]);
+	}
+	printf("\n");
+}
+
 int main(){
 	long long num;
+	vector<long long> factors;
 	printf("What number would you like to know the prime factors of? = ");
 	cin >> num;	
 	auto start = high_resolution_clock::now();
-	primefact(num, 2);
+	primefact(num, 2, factors);
 	auto end = high_resolution_clock::now();
-	printf("\n");	
 	auto duration = duration_cast<milliseconds>(end - start);
-	printf("\nTime taken: %ld ms\n", duration.count());
+	printf("Time taken: %ld ms\n", duration.count());
+	printvec(factors);
 	return 0;
 }
