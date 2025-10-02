@@ -9,14 +9,14 @@ using namespace std;
  * remainder, it'll recursively call this fucntion with the nunmber / the divisor. 
  * I think this algorithm is quite pretty and is much more compact than euclid's for example
  */
-void primefact(int num, int div){
+void primefact(long long num, long long div){
 	if (num == div){ 
-		printf("%d", div); 
+		printf("%lld", div); 
 		return;
 	}
 
 	if(num % div == 0){
-		printf("%d ", div);
+		printf("%lld ", div);
 		primefact((num/div), div);
 		return;
 	}
@@ -27,7 +27,7 @@ void primefact(int num, int div){
 } 
 
 int main(){
-	int num;
+	long long num;
 	printf("What number would you like to know the prime factors of? = ");
 	cin >> num;	
 	primefact(num, 2);
