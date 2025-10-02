@@ -13,21 +13,19 @@ using namespace std::chrono;
  * I think this algorithm is quite pretty and is much more compact than euclid's for example
  */
 void primefact(long long num, long long div, vector<long long>& factors){
-	if (num == div){ 
-		factors.push_back(div);
-		return;
+	while(num != div){	
+		if(num % div == 0){
+			factors.push_back(div);
+			num = (num/div);
+			//primefact((num/div), div, factors);
+		}
+		else{
+			div++;
+			//primefact(num, (div+1), factors);
+		}
 	}
-
-	if(num % div == 0){
-		factors.push_back(div);
-		primefact((num/div), div, factors);
-		return;
-	}
-	else{
-		primefact(num, (div+1), factors);
-		return;
-	}
-} 
+	factors.push_back(div);
+} 	
 
 void printvec(vector<long long> m){
 	int len = m.size();
