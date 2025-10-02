@@ -1,6 +1,8 @@
 #include<cstdio>
 #include<iostream>
+#include<chrono>
 using namespace std;
+using namespace std::chrono;
 // reasons for using these are for cin input and printf.
 
 /*
@@ -33,6 +35,7 @@ int main(){
 	cin >> second;
 
 	int initial = first;
+	auto start = high_resolution_clock::now();
 	for(int i = 0; i<initial; i++){
 		loopy++;
 		n = gcd(first, second);
@@ -44,8 +47,10 @@ int main(){
 			break;
 		}
 	}
-	
+	auto end = high_resolution_clock::now();
 	printf("GCD of %d and %d is -> %d\n",first, second, n);
 	printf("And it took %d loops! from %d to %d.\n", loopy, initial, first);
+	auto duration = duration_cast<milliseconds>(end - start);
+        printf("\nTime taken: %ld ms\n", duration.count());
 	return 0;
 }

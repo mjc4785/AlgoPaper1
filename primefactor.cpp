@@ -1,7 +1,9 @@
 #include<cstdio>
 #include<iostream>
 #include<cmath>
+#include <chrono>  
 using namespace std;
+using namespace std::chrono;
 
 /*
  * im very proud of this function. It simply finds three different cases. and does so in sqrt(n) time.
@@ -30,7 +32,11 @@ int main(){
 	long long num;
 	printf("What number would you like to know the prime factors of? = ");
 	cin >> num;	
+	auto start = high_resolution_clock::now();
 	primefact(num, 2);
+	auto end = high_resolution_clock::now();
 	printf("\n");	
+	auto duration = duration_cast<milliseconds>(end - start);
+	printf("\nTime taken: %ld ms\n", duration.count());
 	return 0;
 }

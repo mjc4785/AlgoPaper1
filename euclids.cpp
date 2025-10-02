@@ -1,6 +1,8 @@
 #include<cstdio>
 #include<iostream>
+#include<chrono>
 using namespace std;
+using namespace std::chrono;
 // I will be using cstdio for the ability to use printf
 // and iostream for the ability to take in numbers of any size. 
 
@@ -21,8 +23,12 @@ int main(){
 	cin >> first;	
 	printf("Input the second of two positive integers = ");
 	cin >> second;
-
-	int n = gcd(first, second);				// find the gcd by calling function	
+	auto start = high_resolution_clock::now();
+	int n = gcd(first, second);		
+	auto end = high_resolution_clock::now();
+	// find the gcd by calling function	
 	printf("GCD of %d and %d is -> %d\n",first, second, n); // prints the gcd of the inputs 
+	auto duration = duration_cast<milliseconds>(end - start);
+	printf("\nTime taken: %ld ms\n", duration.count());
 	return 0;
 }
