@@ -13,12 +13,12 @@ using namespace std::chrono;
  * I think this algorithm is quite pretty and is much more compact than euclid's for example
  */
 int primefact(long long num, long long div, vector<long long>& factors){
-	int divisions = 0;
+	int iterations = 0;
 	while(num != div){	
+		iterations++;
 		if(num % div == 0){
 			factors.push_back(div);
 			num = (num/div);
-			divisions++;
 			//primefact((num/div), div, factors);
 		}
 		else{
@@ -27,8 +27,8 @@ int primefact(long long num, long long div, vector<long long>& factors){
 		}
 	}
 	factors.push_back(div);
-	divisions++;
-	return divisions;
+	iterations++;
+	return iterations;
 } 	
 
 void printvec(vector<long long> m){
@@ -61,21 +61,25 @@ int main(){
 	auto start = high_resolution_clock::now();
 	
 	//starting the factorization
-	int div1 = primefact(num1, 2, factors1);
-	int div2 = primefact(num2, 2, factors2);
+	int ite1 = primefact(num1, 2, factors1);
+	int ite2 = primefact(num2, 2, factors2);
  
 	auto end = high_resolution_clock::now();
 	auto duration = duration_cast<milliseconds>(end - start);
 	
-	printf("Time taken: %ld ms\n", duration.count());
+	printf("\nTime taken: %ld ms\n", duration.count());
 	
-	printf("The first vector's prime factors are...");
+	printf("\nThe first vector's prime factors are: ");
 	printvec(factors1);
-	printf("It took %d divisions\n", div1);
+	int fact1size = factors1.size();
+	printf("It took %d divisions(s)\n", fact1size);
+	printf("It took %d loop(s)\n", ite1);
 	
-	printf("The second vector's prime factors are...");
+	printf("\nThe second vector's prime factors are: ");
 	printvec(factors2);
-	printf("It took %d divisions\n", div2);
-	
+	int fact2size = factors2.size();
+	printf("It took %d divisions(s)\n", fact2size);	
+	printf("It took %d loop(s)\n", ite2);
+
 	return 0;
 }
