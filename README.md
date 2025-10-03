@@ -17,9 +17,9 @@ this repository is simply to hold all of my code for easy transport between VM a
     - 'make run-euc' to run the compiled euclids code
     - 'make run-nmin' to run the euclids code with the subtraction based on GCD number.
     - 'make run-pri' to run the prime factorization algorithm!
+    - 'make run-q' runs the prime factor function for question three. 
     - 'make clean' to get rid of executables. 
-
-There is no make val for valgrind in this code because there are no dynamic variables.
+    - 'make val' will run valgrind on the primefactor executable due to the inclusion of vectors. 
 
 ### Cites if needed
 - 

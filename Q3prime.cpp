@@ -40,17 +40,42 @@ void printvec(vector<long long> m){
 }
 
 int main(){
-	long long num;
-	vector<long long> factors;
-	printf("What number would you like to know the prime factors of? = ");
-	cin >> num;	
+	long long num1;
+	long long num2;
+	vector<long long> factors1;
+	vector<long long> factors2;
+
+	printf("What's the first number you would like to know the prime factors of? = ");
+	cin >> num1;	
+	printf("What's the second number you would like to know the prime factors of? = ");
+	cin >> num2;
+	if(num1 < 2){
+		printf("must be greater than 2\n"); 
+		return 0;
+	}
+	if(num2 < 2){
+		printf("must be greater than 2\n"); 
+		return 0;
+	}
+
 	auto start = high_resolution_clock::now();
-	if(num < 2){printf("must be greater than 2\n"); return 0;}
-	int div = primefact(num, 2, factors);
+	
+	//starting the factorization
+	int div1 = primefact(num1, 2, factors1);
+	int div2 = primefact(num2, 2, factors2);
+ 
 	auto end = high_resolution_clock::now();
 	auto duration = duration_cast<milliseconds>(end - start);
+	
 	printf("Time taken: %ld ms\n", duration.count());
-	printvec(factors);
-	printf("It took %d divisions\n", div);
+	
+	printf("The first vector's prime factors are...");
+	printvec(factors1);
+	printf("It took %d divisions\n", div1);
+	
+	printf("The second vector's prime factors are...");
+	printvec(factors2);
+	printf("It took %d divisions\n", div2);
+	
 	return 0;
 }
