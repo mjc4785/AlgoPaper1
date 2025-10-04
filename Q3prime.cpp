@@ -3,6 +3,7 @@
 #include<cmath>
 #include <chrono>  
 #include<vector>
+#include<algorithm>
 using namespace std;
 using namespace std::chrono;
 
@@ -48,6 +49,7 @@ int main(){
 	long long num2;
 	vector<long long> factors1;
 	vector<long long> factors2;
+	vector<long long> common_fact;
 
 	printf("What's the first number you would like to know the prime factors of? = ");
 	cin >> num1;	
@@ -84,6 +86,17 @@ int main(){
 	int fact2size = factors2.size();
 	printf("It took %d divisions(s)\n", fact2size);	
 	printf("It took %d loop(s)\n", ite2);
+
+	set_intersection(factors1.begin(),factors1.end(),
+			factors2.begin(),factors2.end(),
+			back_inserter(common_fact));
+
+	int prod = 1;
+	int comlen = common_fact.size();
+	for(int k = 0; k<comlen; k++){
+		prod*=common_fact[k];
+	}
+	printf("\nthe GCD of the two numbers is -> %d\n", prod);
 
 	return 0;
 }
