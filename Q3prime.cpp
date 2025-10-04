@@ -19,11 +19,15 @@ int primefact(long long num, long long div, vector<long long>& factors){
 		if(num % div == 0){
 			factors.push_back(div);
 			num = (num/div);
-			//primefact((num/div), div, factors);
 		}
 		else{
 			div++;
-			//primefact(num, (div+1), factors);
+		}
+		// if there are no prime factors found within this amount of iterations than the number itself must 
+		// be prime.
+		if(iterations >= sqrt(num) && factors.size() == 0){ 
+			factors.push_back(num);
+			return iterations;
 		}
 	}
 	factors.push_back(div);

@@ -9,13 +9,15 @@ using namespace std::chrono;
 This funtion is a classic euclid's algorithm. parts explained in the previous file.
 this function is the same as the previous one. Only difference is in the main function. 
 */
-int gcd(int m, int n){
-	if(n == 0){
-		return m;
+int gcd(int m, int n, int& loops){
+	int div;
+	(m > n) ? (div = n) : (div = m);
+	while(div > 0){
+		loops++;
+		if((m % div == 0) && (n % div == 0)){return div;}
+		else{div--;}
 	}
-	else{
-		return gcd(n, m % n);
-	}
+	return 1; // if no common denom is found, 1 is the only common divisor. 
 }
 
 
@@ -33,24 +35,18 @@ int main(){
 	cin >> first;	
 	printf("Input the second of two positive integers = ");
 	cin >> second;
-
 	int initial = first;
+
 	auto start = high_resolution_clock::now();
-	for(int i = 0; i<initial; i++){
-		loopy++;
-		n = gcd(first, second);
-		// printf("n after loop %d -> %d",loopy, n);
-		if(n == 1){ //If there are no GCD other than one
-			first-=1;
-		}	
-		else{
-			break;
-		}
-	}
+	n = gcd(first, second, loopy);
 	auto end = high_resolution_clock::now();
-	printf("GCD of %d and %d is -> %d\n",first, second, n);
-	printf("And it took %d loops! from %d to %d.\n", loopy, initial, first);
+	
+	printf("\nGCD of %d and %d is -> %d\n",first, second, n);
+	printf("And it took %d loops! from %d to %d.\n", loopy, initial, (first-loopy));
+	
 	auto duration = duration_cast<milliseconds>(end - start);
-        printf("\nTime taken: %ld ms\n", duration.count());
+        
+	printf("\nTime taken: %ld ms\n", duration.count());
+	
 	return 0;
 }
