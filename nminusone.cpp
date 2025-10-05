@@ -35,14 +35,16 @@ int main(){
 	cin >> first;	
 	printf("Input the second of two positive integers = ");
 	cin >> second;
-	int initial = first;
 
 	auto start = high_resolution_clock::now();
 	n = gcd(first, second, loopy);
 	auto end = high_resolution_clock::now();
+
+	int prnt;
+	(first > second) ? (prnt = second) : (prnt = first);
 	
 	printf("\nGCD of %d and %d is -> %d\n",first, second, n);
-	printf("And it took %d loops! from %d to %d.\n", loopy, initial, (first-loopy));
+	printf("And it took %d loops! from %d to %d.\n", loopy-1, prnt, (prnt-(loopy-1)));
 	
 	auto duration = duration_cast<milliseconds>(end - start);
         
